@@ -57,9 +57,9 @@ function initSkinCareQuiz() {
     </div>
 
     <!-- Skin Type Section (for those who know) -->
-    <div id="skin-type-section" class="recommender-section" style="display: none;">
+    <div id="skin-type-section" class="recommender-section" style="display: none; text-align: center;">
       <h2>What's Your Skin Type?</h2>
-      <div class="options-container">
+      <div class="options-container" style="max-width: 500px; margin: 30px auto;">
         <div class="option-card" onclick="selectSkinType('dry')">
           <h3>Dry Skin</h3>
           <p>Tight, flaky, or rough skin that needs hydration</p>
@@ -83,23 +83,22 @@ function initSkinCareQuiz() {
     </div>
 
     <!-- Skin Type Discovery Quiz Section -->
-    <div id="skin-discovery-section" class="recommender-section" style="display: none;">
+    <div id="skin-discovery-section" class="recommender-section" style="display: none; text-align: center;">
   <h2>Let's Discover Your Skin Type</h2>
   <p>Answer these questions to help determine your skin type:</p>
-  
   <div id="discovery-questions" class="discovery-quiz">
-    <div class="question-card" id="question-1">
+    <div class="question-card" id="question-1 text-align: center;">
       <h3>Question 1: How does your skin feel after cleansing?</h3>
-      <div class="options-container">
-        <div class="option-card wider" onclick="selectDiscoveryAnswer(1, 'dry')">
+       <div class="options-container" style="max-width: 500px; margin: 30px auto;">
+        <div class="option-card" onclick="selectDiscoveryAnswer(1, 'dry')">
           <h3>Tight and Dry</h3>
           <p>Tight, dry or slightly uncomfortable after cleansing</p>
         </div>
-        <div class="option-card wider" onclick="selectDiscoveryAnswer(1, 'oily')">
+        <div class="option-card" onclick="selectDiscoveryAnswer(1, 'oily')">
           <h3>Still Oily</h3>
           <p>Feels oily or shiny, especially in the T-zone</p>
         </div>
-        <div class="option-card wider" onclick="selectDiscoveryAnswer(1, 'combination')">
+        <div class="option-card" onclick="selectDiscoveryAnswer(1, 'combination')">
           <h3>Mixed Feelings</h3>
           <p>Tight in some areas (like cheeks) but still oily in others (like forehead)</p>
         </div>
