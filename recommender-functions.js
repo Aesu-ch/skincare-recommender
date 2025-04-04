@@ -127,54 +127,122 @@ function populateConcerns(skinType) {
   const concernsContainer = document.getElementById('concerns-container');
   concernsContainer.innerHTML = '';
   
+  // Update the section title to include multi-select instruction
+  const concernsSection = document.getElementById('concerns-section');
+  const existingTitle = concernsSection.querySelector('h2');
+  const multiSelectInstruction = document.createElement('h3');
+  multiSelectInstruction.textContent = 'You can select multiple concerns that best describe your skin needs.';
+  multiSelectInstruction.style.textAlign = 'center';
+  multiSelectInstruction.style.marginBottom = '20px';
+  existingTitle.after(multiSelectInstruction);
+  
   let concerns = [];
   
   switch(skinType) {
     case 'dry':
       concerns = [
-        { id: 'hydration', name: 'Hydration', desc: 'Extreme dryness, flakiness, tight feeling' },
-        { id: 'aging', name: 'Anti-Aging', desc: 'Fine lines, wrinkles, loss of firmness' },
-        { id: 'sensitive', name: 'Sensitivity', desc: 'Irritation, redness, reactive skin' },
-        { id: 'dullness', name: 'Dullness', desc: 'Lack of radiance, uneven tone' }
+        { id: 'aging', name: 'Anti-Aging',	 desc: 'Fine lines, wrinkles, loss of firmness' },
+        { id: 'dryness', name: 'Dryness',	 desc: 'Extreme dryness, flakiness, tight feeling,
+        { id: 'hyperpigmentation', name: 'Hyperpigmentation',	 desc: 'Dark spots and uneven skin tone' },
+        { id: 'irritation', name: 'Irritation',	 desc: 'Redness, sensitivity' },
+        { id: 'brightness', name: 'Brightness',	 desc: 'Improve overall skin radiance, uneven skin tone' },
+        { id: 'large-pores', name: 'Large Pores',	 desc: 'Visible pores' },
+        { id: 'acne', name: 'Acne & Breakouts'	, desc: 'Pimples,  clogged pores,  breakouts' },
+        { id: 'oilcontrol', name: 'Oil Control',	 desc: 'Excess sebum, shininess' }
       ];
       break;
     case 'oily':
       concerns = [
-        { id: 'acne', name: 'Acne & Breakouts', desc: 'Pimples, clogged pores, breakouts' },
-        { id: 'pores', name: 'Large Pores', desc: 'Visible pores, textural issues' },
-        { id: 'oilcontrol', name: 'Oil Control', desc: 'Excess sebum, shininess' },
-        { id: 'blackheads', name: 'Blackheads', desc: 'Clogged pores, blackheads, whiteheads' }
+       { id: 'aging', name: 'Anti-Aging',	 desc: 'Fine lines, wrinkles, loss of firmness' },
+        { id: 'dryness', name: 'Dryness',	 desc: 'Extreme dryness, flakiness, tight feeling,
+        { id: 'hyperpigmentation', name: 'Hyperpigmentation',	 desc: 'Dark spots and uneven skin tone' },
+        { id: 'irritation', name: 'Irritation',	 desc: 'Redness, sensitivity' },
+        { id: 'brightness', name: 'Brightness',	 desc: 'Improve overall skin radiance, uneven skin tone' },
+        { id: 'large-pores', name: 'Large Pores',	 desc: 'Visible pores' },
+        { id: 'acne', name: 'Acne & Breakouts'	, desc: 'Pimples,  clogged pores,  breakouts' },
+        { id: 'oilcontrol', name: 'Oil Control',	 desc: 'Excess sebum, shininess' }
       ];
       break;
     case 'combination':
       concerns = [
-        { id: 'balance', name: 'Balance', desc: 'Different concerns in different areas' },
-        { id: 'acne', name: 'Acne & Breakouts', desc: 'Pimples, clogged pores, breakouts' },
-        { id: 'aging', name: 'Anti-Aging', desc: 'Fine lines, wrinkles, loss of firmness' },
-        { id: 'hydration', name: 'Targeted Hydration', desc: 'Dry areas with oily T-zone' }
+        { id: 'aging', name: 'Anti-Aging',	 desc: 'Fine lines, wrinkles, loss of firmness' },
+        { id: 'dryness', name: 'Dryness',	 desc: 'Extreme dryness, flakiness, tight feeling,
+        { id: 'hyperpigmentation', name: 'Hyperpigmentation',	 desc: 'Dark spots and uneven skin tone' },
+        { id: 'irritation', name: 'Irritation',	 desc: 'Redness, sensitivity' },
+        { id: 'brightness', name: 'Brightness',	 desc: 'Improve overall skin radiance, uneven skin tone' },
+        { id: 'large-pores', name: 'Large Pores',	 desc: 'Visible pores' },
+        { id: 'acne', name: 'Acne & Breakouts'	, desc: 'Pimples,  clogged pores,  breakouts' },
+        { id: 'oilcontrol', name: 'Oil Control',	 desc: 'Excess sebum, shininess' }
       ];
       break;
     case 'sensitive':
       concerns = [
-        { id: 'redness', name: 'Redness', desc: 'Persistent redness, flushing' },
-        { id: 'irritation', name: 'Irritation', desc: 'Reactive skin, burning, stinging' },
-        { id: 'strengthen', name: 'Barrier Repair', desc: 'Damaged skin barrier, sensitivity' },
-        { id: 'gentle', name: 'Gentle Care', desc: 'Overall sensitive skin needs' }
+        { id: 'aging', name: 'Anti-Aging',	 desc: 'Fine lines, wrinkles, loss of firmness' },
+        { id: 'dryness', name: 'Dryness',	 desc: 'Extreme dryness, flakiness, tight feeling,
+        { id: 'hyperpigmentation', name: 'Hyperpigmentation',	 desc: 'Dark spots and uneven skin tone' },
+        { id: 'irritation', name: 'Irritation',	 desc: 'Redness, sensitivity' },
+        { id: 'brightness', name: 'Brightness',	 desc: 'Improve overall skin radiance, uneven skin tone' },
+        { id: 'large-pores', name: 'Large Pores',	 desc: 'Visible pores' },
+        { id: 'acne', name: 'Acne & Breakouts'	, desc: 'Pimples,  clogged pores,  breakouts' },
+        { id: 'oilcontrol', name: 'Oil Control',	 desc: 'Excess sebum, shininess' }
+
       ];
       break;
   }
+  // Store selected concerns
+  const selectedConcerns = new Set();
   
-  // Add concerns to the container
+  // Create concerns with multi-select
   concerns.forEach(concern => {
     const concernCard = document.createElement('div');
-    concernCard.className = 'option-card';
-    concernCard.onclick = function() { selectConcern(concern.id); };
+    concernCard.className = 'option-card wider';
+    concernCard.dataset.id = concern.id;
+    
+    // Add selection toggle
+    concernCard.addEventListener('click', function() {
+      this.classList.toggle('selected');
+      
+      if (this.classList.contains('selected')) {
+        selectedConcerns.add(concern.id);
+      } else {
+        selectedConcerns.delete(concern.id);
+      }
+    });
+    
     concernCard.innerHTML = `
       <h3>${concern.name}</h3>
       <p>${concern.desc}</p>
     `;
+    
     concernsContainer.appendChild(concernCard);
   });
+  
+  // Remove existing confirm button if present
+  const existingConfirmButton = document.querySelector('.confirm-concerns');
+  if (existingConfirmButton) {
+    existingConfirmButton.remove();
+  }
+  
+  // Add confirm button
+  const confirmButton = document.createElement('button');
+  confirmButton.textContent = 'Confirm Concerns';
+  confirmButton.className = 'recommender-button confirm-concerns';
+  confirmButton.addEventListener('click', function() {
+    if (selectedConcerns.size > 0) {
+      // Convert set to array
+      const concernsArray = Array.from(selectedConcerns);
+      
+      // For now, use the first selected concern
+      // You might want to modify this logic later to handle multiple concerns
+      selectConcern(concernsArray[0]);
+    } else {
+      alert('Please select at least one concern');
+    }
+  });
+  
+  // Add confirm button to navigation
+  const navButtons = document.querySelector('#concerns-section .nav-buttons');
+  navButtons.appendChild(confirmButton);
 }
 
 // Handle concern selection
