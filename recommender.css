@@ -11,6 +11,7 @@
 h1, h2, h3, h4 {
   font-weight: 300; /* Light weight for headings - modern feel */
   color: #2A4C46; /* Deep Teal */
+  text-align: center;
 }
 
 h1 {
