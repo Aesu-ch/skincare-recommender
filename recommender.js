@@ -84,99 +84,97 @@ function initSkinCareQuiz() {
 
     <!-- Skin Type Discovery Quiz Section -->
     <div id="skin-discovery-section" class="recommender-section" style="display: none;">
-      <h2>Let's Discover Your Skin Type</h2>
-      <p>Answer these questions to help determine your skin type:</p>
-      
-      <div id="discovery-questions" class="discovery-quiz">
-        <div class="question-card" id="question-1">
-          <h3>Question 1: How does your skin feel after cleansing?</h3>
-          <div class="answer-options">
-            <div class="answer-option" onclick="selectDiscoveryAnswer(1, 'dry')">
-              <p>Tight, dry or slightly uncomfortable</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(1, 'oily')">
-              <p>Still feels oily or shiny, especially in the T-zone</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(1, 'combination')">
-              <p>Tight in some areas (like cheeks) but still oily in others (like forehead)</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(1, 'sensitive')">
-              <p>Irritated, stinging, or reddened</p>
-            </div>
-          </div>
+  <h2>Let's Discover Your Skin Type</h2>
+  <p>Answer these questions to help determine your skin type:</p>
+  
+  <div id="discovery-questions" class="discovery-quiz">
+    <div class="question-card" id="question-1">
+      <h3>Question 1: How does your skin feel after cleansing?</h3>
+      <div class="options-container">
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(1, 'dry')">
+          <h3>Tight and Dry</h3>
+          <p>Tight, dry or slightly uncomfortable after cleansing</p>
         </div>
-        
-        <div class="question-card" id="question-2" style="display: none;">
-          <h3>Question 2: By mid-day, how does your skin look?</h3>
-          <div class="answer-options">
-            <div class="answer-option" onclick="selectDiscoveryAnswer(2, 'dry')">
-              <p>Feels dry, might have some flaky patches</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(2, 'oily')">
-              <p>Shiny and oily all over</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(2, 'combination')">
-              <p>Oily in the T-zone, normal to dry elsewhere</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(2, 'sensitive')">
-              <p>Can become red or irritated easily, especially with new products</p>
-            </div>
-          </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(1, 'oily')">
+          <h3>Still Oily</h3>
+          <p>Feels oily or shiny, especially in the T-zone</p>
         </div>
-        
-        <div class="question-card" id="question-3" style="display: none;">
-          <h3>Question 3: How often do you experience breakouts?</h3>
-          <div class="answer-options">
-            <div class="answer-option" onclick="selectDiscoveryAnswer(3, 'dry')">
-              <p>Rarely have breakouts, but skin can look dull</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(3, 'oily')">
-              <p>Frequently experience breakouts and clogged pores</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(3, 'combination')">
-              <p>Occasional breakouts, mainly in the T-zone</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(3, 'sensitive')">
-              <p>Sometimes have breakouts, especially when using new products</p>
-            </div>
-          </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(1, 'combination')">
+          <h3>Mixed Feelings</h3>
+          <p>Tight in some areas (like cheeks) but still oily in others (like forehead)</p>
         </div>
-        
-        <div class="question-card" id="question-4" style="display: none;">
-          <h3>Question 4: How does your skin react to new products?</h3>
-          <div class="answer-options">
-            <div class="answer-option" onclick="selectDiscoveryAnswer(4, 'dry')">
-              <p>Often feels more moisturized but might still feel tight</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(4, 'oily')">
-              <p>Can feel greasy or lead to breakouts if too heavy</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(4, 'combination')">
-              <p>Different reactions in different areas of the face</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(4, 'sensitive')">
-              <p>Often experience redness, stinging, or irritation</p>
-            </div>
-          </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(1, 'sensitive')">
+          <h3>Irritated</h3>
+          <p>Feels irritated, stinging, or reddened after cleansing</p>
         </div>
-        
-        <div class="question-card" id="question-5" style="display: none;">
-          <h3>Question 5: What are your main skin concerns?</h3>
-          <div class="answer-options">
-            <div class="answer-option" onclick="selectDiscoveryAnswer(5, 'dry')">
-              <p>Dryness, flakiness, or lack of radiance</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(5, 'oily')">
-              <p>Excess oil, shine, acne, or large pores</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(5, 'combination')">
-              <p>Different issues in different areas (oily T-zone, dry cheeks)</p>
-            </div>
-            <div class="answer-option" onclick="selectDiscoveryAnswer(5, 'sensitive')">
-              <p>Redness, irritation, or reacting to products</p>
-            </div>
-          </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="question-2" style="display: none;">
+      <h3>Question 2: By mid-day, how does your skin look?</h3>
+      <div class="options-container">
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(2, 'dry')">
+          <h3>Dry and Flaky</h3>
+          <p>Feels dry, might have some flaky patches by midday</p>
         </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(2, 'oily')">
+          <h3>Very Shiny</h3>
+          <p>Shiny and oily all over by midday</p>
+        </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(2, 'combination')">
+          <h3>Uneven Shine</h3>
+          <p>Oily in the T-zone, normal to dry elsewhere</p>
+        </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(2, 'sensitive')">
+          <h3>Reactive</h3>
+          <p>Can become red or irritated easily, especially with environmental changes</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="question-3" style="display: none;">
+      <h3>Question 3: How often do you experience breakouts?</h3>
+      <div class="options-container">
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(3, 'dry')">
+          <h3>Rarely</h3>
+          <p>Rarely have breakouts, but skin can look dull</p>
+        </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(3, 'oily')">
+          <h3>Frequent Breakouts</h3>
+          <p>Frequently experience breakouts and clogged pores</p>
+        </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(3, 'combination')">
+          <h3>Occasional Breakouts</h3>
+          <p>Occasional breakouts, mainly in the T-zone</p>
+        </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(3, 'sensitive')">
+          <h3>Product-Triggered</h3>
+          <p>Sometimes have breakouts, especially when using new products</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question-card" id="question-4" style="display: none;">
+      <h3>Question 4: How does your skin react to new products?</h3>
+      <div class="options-container">
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(4, 'dry')">
+          <h3>Needs Moisture</h3>
+          <p>Often feels more moisturized but might still feel tight</p>
+        </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(4, 'oily')">
+          <h3>Prone to Greasiness</h3>
+          <p>Can feel greasy or lead to breakouts if too heavy</p>
+        </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(4, 'combination')">
+          <h3>Varied Reactions</h3>
+          <p>Different reactions in different areas of the face</p>
+        </div>
+        <div class="option-card wider" onclick="selectDiscoveryAnswer(4, 'sensitive')">
+          <h3>Easily Irritated</h3>
+          <p>Often experience redness, stinging, or irritation</p>
+        </div>
+      </div>
+    </div>
         
         <div id="discovery-result" style="display: none; text-align: center; margin-top: 30px;">
           <h3>Your Skin Type Results</h3>
