@@ -111,7 +111,7 @@ function initSkinCareQuiz() {
     
     <div class="question-card" id="question-2" style="display: none;">
       <h3>Question 2: By mid-day, how does your skin look?</h3>
-      <div class="options-container">
+      <div class="options-container" style="max-width: 500px; margin: 30px auto;">
         <div class="option-card wider" onclick="selectDiscoveryAnswer(2, 'dry')">
           <h3>Dry and Flaky</h3>
           <p>Feels dry, might have some flaky patches by midday</p>
@@ -133,7 +133,7 @@ function initSkinCareQuiz() {
     
     <div class="question-card" id="question-3" style="display: none;">
       <h3>Question 3: How often do you experience breakouts?</h3>
-      <div class="options-container">
+      <div class="options-container" style="max-width: 500px; margin: 30px auto;">
         <div class="option-card wider" onclick="selectDiscoveryAnswer(3, 'dry')">
           <h3>Rarely</h3>
           <p>Rarely have breakouts, but skin can look dull</p>
@@ -155,7 +155,7 @@ function initSkinCareQuiz() {
     
     <div class="question-card" id="question-4" style="display: none;">
       <h3>Question 4: How does your skin react to new products?</h3>
-      <div class="options-container">
+      <div class="options-container" style="max-width: 500px; margin: 30px auto;">
         <div class="option-card wider" onclick="selectDiscoveryAnswer(4, 'dry')">
           <h3>Needs Moisture</h3>
           <p>Often feels more moisturized but might still feel tight</p>
