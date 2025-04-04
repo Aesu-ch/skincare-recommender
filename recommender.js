@@ -188,15 +188,16 @@ function initSkinCareQuiz() {
     </div>
 
     <!-- Concerns Section (will be dynamically populated) -->
-    <div id="concerns-section" class="recommender-section" style="display: none;">
-      <h2>What's Your Main Concern?</h2>
-      <div id="concerns-container" class="options-container">
-        <!-- Concerns will be added here dynamically -->
-      </div>
-      <div class="nav-buttons">
-        <button onclick="backToPreviousSection()" class="back-button">Back</button>
-      </div>
-    </div>
+<div id="concerns-section" class="recommender-section" style="display: none;">
+  <h2>What's Your Main Concern?</h2>
+  <div id="concerns-container" class="options-container">
+    <!-- Concerns will be added here dynamically -->
+  </div>
+  <div class="nav-buttons">
+    <button onclick="backToPreviousSection()" class="back-button">Back</button>
+    <!-- Confirm button will be added dynamically by JavaScript -->
+  </div>
+</div>
 
     <!-- Results Section -->
     <div id="results-section" class="recommender-section" style="display: none;">
