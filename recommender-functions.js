@@ -27,11 +27,17 @@ function handleKnowSkinType(knows) {
     
     // Hide all questions except the first one
     for (let i = 1; i <= 5; i++) {
-      document.getElementById('question-' + i).style.display = i === 1 ? 'block' : 'none';
+      const questionElement = document.getElementById('question-' + i);
+      if (questionElement) {
+        questionElement.style.display = i === 1 ? 'block' : 'none';
+      }
     }
     
     // Hide the result section
-    document.getElementById('discovery-result').style.display = 'none';
+    const discoveryResult = document.getElementById('discovery-result');
+    if (discoveryResult) {
+      discoveryResult.style.display = 'none';
+    }
     
     // Show the discovery section
     showSection('skin-discovery-section');
@@ -91,8 +97,17 @@ function selectDiscoveryAnswer(questionNum, skinType, clickEvent) {
   // Move to next question or show results
   if (questionNum < 5) {
     setTimeout(() => {
-      document.getElementById('question-' + questionNum).style.display = 'none';
-      document.getElementById('question-' + (questionNum + 1)).style.display = 'block';
+      const currentQuestion = document.getElementById('question-' + questionNum);
+      const nextQuestion = document.getElementById('question-' + (questionNum + 1));
+      
+      if (currentQuestion) {
+        currentQuestion.style.display = 'none';
+      }
+      
+      if (nextQuestion) {
+        nextQuestion.style.display = 'block';
+      }
+      
       currentQuestion = questionNum + 1;
     }, 300);
   } else {
@@ -109,20 +124,28 @@ function selectDiscoveryAnswer(questionNum, skinType, clickEvent) {
     
     // Display result
     const resultContent = document.getElementById('result-content');
-    resultContent.innerHTML = `
-      <p>Based on your answers, your skin type appears to be:</p>
-      <h2 style="color: #8B9D83; margin: 15px 0;">${getFullSkinTypeName(result)}</h2>
-      <p>${getSkinTypeDescription(result)}</p>
-    `;
+    if (resultContent) {
+      resultContent.innerHTML = `
+        <p>Based on your answers, your skin type appears to be:</p>
+        <h2 style="color: #8B9D83; margin: 15px 0;">${getFullSkinTypeName(result)}</h2>
+        <p>${getSkinTypeDescription(result)}</p>
+      `;
+    }
     
     // Store the result
     selectedSkinType = result;
     
     // Show the result section
-    document.getElementById('discovery-result').style.display = 'block';
+    const discoveryResult = document.getElementById('discovery-result');
+    if (discoveryResult) {
+      discoveryResult.style.display = 'block';
+    }
     
     // Hide the navigation buttons
-    document.getElementById('discovery-nav').style.display = 'none';
+    const discoveryNav = document.getElementById('discovery-nav');
+    if (discoveryNav) {
+      discoveryNav.style.display = 'none';
+    }
   }
 }
 
@@ -144,6 +167,8 @@ let selectedConcerns = [];
 // Populate concerns based on skin type
 function populateConcerns(skinType) {
   const concernsContainer = document.getElementById('concerns-container');
+  if (!concernsContainer) return;
+  
   concernsContainer.innerHTML = '';
   
   let concerns = [];
@@ -213,6 +238,12 @@ function populateConcerns(skinType) {
     concernsContainer.appendChild(concernCard);
   });
   
+  // Remove any existing confirm button container first
+  const existingConfirmContainer = document.querySelector('.confirm-button-container');
+  if (existingConfirmContainer) {
+    existingConfirmContainer.remove();
+  }
+  
   // Add confirm button
   const confirmButtonContainer = document.createElement('div');
   confirmButtonContainer.className = 'confirm-button-container';
@@ -220,10 +251,19 @@ function populateConcerns(skinType) {
     <button id="confirm-concerns-button" class="recommender-button" disabled>Confirm Selection</button>
     <p class="selection-hint">Please select at least one concern</p>
   `;
-  concernsContainer.parentNode.insertBefore(confirmButtonContainer, document.querySelector('#concerns-section .nav-buttons'));
   
-  // Add event listener for confirm button
-  document.getElementById('confirm-concerns-button').addEventListener('click', confirmConcernSelections);
+  const navButtons = document.querySelector('#concerns-section .nav-buttons');
+  if (navButtons) {
+    concernsContainer.parentNode.insertBefore(confirmButtonContainer, navButtons);
+    
+    // Add event listener for confirm button
+    const confirmButton = document.getElementById('confirm-concerns-button');
+    if (confirmButton) {
+      // Remove any existing event listeners to prevent duplicates
+      confirmButton.replaceWith(confirmButton.cloneNode(true));
+      document.getElementById('confirm-concerns-button').addEventListener('click', confirmConcernSelections);
+    }
+  }
 }
 
 // Toggle concern selection (for multi-select)
@@ -245,12 +285,14 @@ function toggleConcernSelection(concernId, clickEvent) {
   const confirmButton = document.getElementById('confirm-concerns-button');
   const selectionHint = document.querySelector('.selection-hint');
   
-  if (selectedConcerns.length > 0) {
-    confirmButton.disabled = false;
-    selectionHint.style.display = 'none';
-  } else {
-    confirmButton.disabled = true;
-    selectionHint.style.display = 'block';
+  if (confirmButton && selectionHint) {
+    if (selectedConcerns.length > 0) {
+      confirmButton.disabled = false;
+      selectionHint.style.display = 'none';
+    } else {
+      confirmButton.disabled = true;
+      selectionHint.style.display = 'block';
+    }
   }
 }
 
@@ -261,10 +303,14 @@ function confirmConcernSelections() {
   }
   
   // Generate routine based on selected concerns
-  generateRoutineForMultipleConcerns(selectedSkinType, selectedConcerns);
-  
-  // Show results section
-  showSection('results-section');
+  if (typeof generateRoutineForMultipleConcerns === 'function') {
+    generateRoutineForMultipleConcerns(selectedSkinType, selectedConcerns);
+    
+    // Show results section
+    showSection('results-section');
+  } else {
+    console.error("generateRoutineForMultipleConcerns function not found");
+  }
 }
 
 // Function to handle back button navigation
@@ -297,7 +343,10 @@ function resetQuiz() {
     option.classList.remove('selected');
   });
   
-  document.getElementById('discovery-nav').style.display = 'flex';
+  const discoveryNav = document.getElementById('discovery-nav');
+  if (discoveryNav) {
+    discoveryNav.style.display = 'flex';
+  }
   
   showSection('intro-section');
 }
