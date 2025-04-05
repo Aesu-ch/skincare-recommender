@@ -60,6 +60,9 @@ function selectSkinType(skinType, clickEvent) {
     }
   }
   
+  // Reset selected concerns when changing skin type
+  selectedConcerns = [];
+  
   // Populate concerns based on skin type
   populateConcerns(skinType);
   
@@ -108,7 +111,7 @@ function selectDiscoveryAnswer(questionNum, skinType, clickEvent) {
     const resultContent = document.getElementById('result-content');
     resultContent.innerHTML = `
       <p>Based on your answers, your skin type appears to be:</p>
-      <h2 style="color: #4CAF50; margin: 15px 0;">${getFullSkinTypeName(result)}</h2>
+      <h2 style="color: #8B9D83; margin: 15px 0;">${getFullSkinTypeName(result)}</h2>
       <p>${getSkinTypeDescription(result)}</p>
     `;
     
@@ -125,12 +128,18 @@ function selectDiscoveryAnswer(questionNum, skinType, clickEvent) {
 
 // Confirm skin type from discovery and continue
 function confirmSkinType() {
+  // Reset selected concerns
+  selectedConcerns = [];
+  
   // Populate concerns based on skin type
   populateConcerns(selectedSkinType);
   
   // Show concerns section
   showSection('concerns-section');
 }
+
+// Array to store selected concerns
+let selectedConcerns = [];
 
 // Populate concerns based on skin type
 function populateConcerns(skinType) {
@@ -189,53 +198,80 @@ function populateConcerns(skinType) {
       ];
       break;
   }
+  
   // Add concerns to the container
   concerns.forEach(concern => {
     const concernCard = document.createElement('div');
     concernCard.className = 'option-card';
     concernCard.setAttribute('data-concern', concern.id);
-    // Pass the event to the selectConcern function
-    concernCard.onclick = function(event) { selectConcern(concern.id, event); };
+    // Change to toggle selection rather than direct selection
+    concernCard.onclick = function(event) { toggleConcernSelection(concern.id, event); };
     concernCard.innerHTML = `
       <h3>${concern.name}</h3>
       <p>${concern.desc}</p>
     `;
     concernsContainer.appendChild(concernCard);
   });
+  
+  // Add confirm button
+  const confirmButtonContainer = document.createElement('div');
+  confirmButtonContainer.className = 'confirm-button-container';
+  confirmButtonContainer.innerHTML = `
+    <button id="confirm-concerns-button" class="recommender-button" disabled>Confirm Selection</button>
+    <p class="selection-hint">Please select at least one concern</p>
+  `;
+  concernsContainer.parentNode.insertBefore(confirmButtonContainer, document.querySelector('#concerns-section .nav-buttons'));
+  
+  // Add event listener for confirm button
+  document.getElementById('confirm-concerns-button').addEventListener('click', confirmConcernSelections);
 }
 
-// Handle concern selection
-function selectConcern(concern, clickEvent) {
-  selectedConcern = concern;
+// Toggle concern selection (for multi-select)
+function toggleConcernSelection(concernId, clickEvent) {
+  const index = selectedConcerns.indexOf(concernId);
+  const currentElement = clickEvent.currentTarget;
   
-  // Clear previous selections
-  const options = document.querySelectorAll('#concerns-section .option-card');
-  options.forEach(option => {
-    option.classList.remove('selected');
-  });
-  
-  // Highlight selected option if we have the event
-  if (clickEvent && clickEvent.currentTarget) {
-    clickEvent.currentTarget.classList.add('selected');
+  if (index === -1) {
+    // Add to selected concerns
+    selectedConcerns.push(concernId);
+    currentElement.classList.add('selected');
   } else {
-    // Try to find and select the element by other means
-    const selectedOption = document.querySelector(`#concerns-container .option-card[data-concern="${concern}"]`);
-    if (selectedOption) {
-      selectedOption.classList.add('selected');
-    }
+    // Remove from selected concerns
+    selectedConcerns.splice(index, 1);
+    currentElement.classList.remove('selected');
   }
   
-  // Generate routine
-  generateRoutine(selectedSkinType, selectedConcern);
+  // Update the confirm button state
+  const confirmButton = document.getElementById('confirm-concerns-button');
+  const selectionHint = document.querySelector('.selection-hint');
   
-  // Show results section after a brief delay
-  setTimeout(() => {
-    showSection('results-section');
-  }, 300);
+  if (selectedConcerns.length > 0) {
+    confirmButton.disabled = false;
+    selectionHint.style.display = 'none';
+  } else {
+    confirmButton.disabled = true;
+    selectionHint.style.display = 'block';
+  }
+}
+
+// Handle confirming multiple concern selections
+function confirmConcernSelections() {
+  if (selectedConcerns.length === 0) {
+    return; // Don't proceed if no concerns selected
+  }
+  
+  // Generate routine based on selected concerns
+  generateRoutineForMultipleConcerns(selectedSkinType, selectedConcerns);
+  
+  // Show results section
+  showSection('results-section');
 }
 
 // Function to handle back button navigation
 function backToPreviousSection() {
+  // Reset selected concerns when going back
+  selectedConcerns = [];
+  
   if (cameFromDiscovery) {
     showSection('skin-discovery-section');
   } else {
@@ -246,7 +282,7 @@ function backToPreviousSection() {
 // Reset the quiz
 function resetQuiz() {
   selectedSkinType = '';
-  selectedConcern = '';
+  selectedConcerns = [];
   discoveryAnswers = {
     dry: 0,
     oily: 0,
