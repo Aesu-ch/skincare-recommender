@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Variables to store user selections
 let selectedSkinType = '';
-let selectedConcern = '';
+let selectedConcerns = [];
 let discoveryAnswers = {
   dry: 0,
   oily: 0,
