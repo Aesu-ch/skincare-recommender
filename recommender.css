@@ -17,20 +17,24 @@ h1, h2, h3, h4 {
 h1 {
   font-size: 32px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 h2 {
   font-size: 24px;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 h3 {
   font-size: 20px;
   margin-bottom: 12px;
+  text-align: center;
 }
 
 p {
   margin-bottom: 16px;
+  text-align: center;
 }
 
 /* Buttons */
@@ -172,6 +176,72 @@ p {
 .product-button:hover {
   background-color: #9CAF96; /* Forest Mint */
   transform: translateY(-2px);
+}
+/* Add these new styles to your existing CSS */
+
+/* Confirm button container */
+.confirm-button-container {
+  width: 100%;
+  text-align: center;
+  margin: 30px 0;
+}
+
+/* Selection hint */
+.selection-hint {
+  font-size: 14px;
+  color: #767B3A;
+  margin-top: 10px;
+}
+
+/* Disabled button */
+.recommender-button:disabled {
+  background-color: #B7C0B3;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Selected concerns list */
+.selected-concerns-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.selected-concerns-list li {
+  background-color: #8B9D83;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* Highlighted card for additional concerns */
+.highlighted-card {
+  border-color: #8B9D83;
+  background-color: #F8F9F6;
+  position: relative;
+}
+
+.concern-tag {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background-color: #8B9D83;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/* Treatments container */
+.treatments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 /* Tips Container */
